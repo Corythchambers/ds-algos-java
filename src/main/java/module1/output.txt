@@ -1,0 +1,7 @@
+/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home/bin/java -javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=60267:/Applications/IntelliJ IDEA CE.app/Contents/bin -Dfile.encoding=UTF-8 -classpath /Users/thomaschambers/git-projects/algo-ds-java/target/classes module1.TouristList
+Find tourist. Expected Prague, got Prague
+Find tourist. Expected Carmen, got Carmen
+Find tourist. Expected Down, got Down
+Find non existent tourist. Expected 'Person not found', got 'Person not found'
+
+Process finished with exit code 0
