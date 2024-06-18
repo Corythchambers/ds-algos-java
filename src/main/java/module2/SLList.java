@@ -1,6 +1,8 @@
 package module2;
 
-public class SLList<LochNess> {
+import module1.PenguinList;
+
+public class SLList<LochNess> implements InterfaceList<LochNess> {
 	class StuffNode {
 		public LochNess item;
 		public StuffNode next;
@@ -45,6 +47,7 @@ public class SLList<LochNess> {
 	{
 		return recursiveSize(first);
 	}
+
 
 	public static void main(String[] args) {
 		SLList<Integer> L = new SLList<>(15);
