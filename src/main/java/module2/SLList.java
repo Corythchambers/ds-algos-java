@@ -2,7 +2,7 @@ package module2;
 
 import module1.PenguinList;
 
-public class SLList<LochNess> implements InterfaceList<LochNess> {
+public class SLList<LochNess> {
 	class StuffNode {
 		public LochNess item;
 		public StuffNode next;
