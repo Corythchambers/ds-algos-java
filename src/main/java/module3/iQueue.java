@@ -5,4 +5,7 @@ public interface iQueue {
     void deQueue();
     float peek();
     boolean isEmpty();
+    public void pushFront(float x);
+    public float peekFront();
+    public void popTail();
 }

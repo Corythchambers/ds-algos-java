@@ -1,6 +1,6 @@
 package module3;
 
-public class DLQueue {
+public class DLQueue implements iQueue {
     class IntNode {
         public float item;
         public IntNode next;
@@ -17,6 +17,29 @@ public class DLQueue {
     public DLQueue(float x) {
         head = new IntNode(x, null);
         tail = head;
+    }
+
+    public void pushFront(float item) {
+        // add item to the front of the queue;
+        if (head == null) {
+            enQueue(item);
+        } else {
+            IntNode newNode = new IntNode(item, head);
+            head.prev = newNode;
+            head = newNode;
+            size++;
+        }
+    }
+
+    public float peekFront() {
+        return head.item;
+    }
+
+    public void popTail() {
+        if (tail != null) {
+            tail = tail.prev;
+            size--;
+        }
     }
 
     public void deQueue() {
@@ -54,6 +77,10 @@ public class DLQueue {
 
     public int size() {
         return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public static void main(String[] args) {
