@@ -52,6 +52,17 @@ public class HashChain {
         }
         return null;
     }
+
+    public cellT rFindIndexForKey(String key, cellT head) {
+        if (head == null) {
+            return null;
+        } else if (head.key.equals(key)) {
+            return head;
+        } else {
+            rFindIndexForKey(key, head.next);
+        }
+        return null;
+    }
     public int hashFunction3(String s, int nBuckets) {
         long Multiplier = -1664117991L;
         long hashcode = 0;
@@ -61,5 +72,13 @@ public class HashChain {
         return (int)(hashcode % nBuckets);
     }
 
+    public void display() {
+        for (int i = 0; i < buckets.length; i++) {
+            for (cellT cur = buckets[i]; cur != null; cur = cur.next) {
+                System.out.print(" " + cur.val);
+            }
+            System.out.println();
+        }
+    }
 
 }
