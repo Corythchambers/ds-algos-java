@@ -10,6 +10,7 @@ public class BST {
         addressBook.add("Joe", 5556666);
         addressBook.add("Kim", 7778888);
         addressBook.add("Dan", 9991111);
+        addressBook.display();
 
         try
         {
@@ -19,6 +20,13 @@ public class BST {
         {
             System.out.println(e.getMessage());
         }
+
+        addressBook.remove("Dan");
+        System.out.println("Tree contains:");
+        addressBook.display();
+        addressBook.remove("Kim");
+        System.out.println("Tree contains:");
+        addressBook.display();
     }
 
 }
@@ -97,7 +105,7 @@ class binTree<Item>
 
             t.left = treeEnter(t.left, key, value);
         }
-        else if (key.compareTo( t.key) > 0)
+        else if (key.compareTo(t.key) > 0)
         {
 
             t.right = treeEnter(t.right, key, value);
@@ -107,6 +115,56 @@ class binTree<Item>
             t.val = value;
         }
         return t;
+    }
+
+    public void display() {
+        inorderPrint(root);
+    }
+
+    public void inorderPrint(node n) {
+        if (n != null) {
+            inorderPrint(n.left);
+            System.out.println(n.key + ": " + n.val);
+            inorderPrint(n.right);
+        }
+    }
+
+    public void remove(String k) {
+        node gone = deleteNode(root, k);
+        System.out.println("Deleted: " + gone.val);
+    }
+
+    private node deleteNode(node n, String key) {
+        // find the node through in order traversal
+        if (n == null) {
+            return null;
+        } else if (key.compareTo(n.key) < 0) {
+            n.left = deleteNode(n.left, key);
+        } else if (key.compareTo(n.key) > 0) {
+            n.right = deleteNode(n.right, key);
+        } else {
+            // found it
+            // no child
+            if (n.left == null) {
+                return n.right;
+            } else if (key.compareTo(n.key) > 0) {
+                return n.left;
+            }
+            // node with two children: get the inorder successor (smallest in right subtree)
+            n.key = minValue(n.right);
+            // delete the inorder successor
+            n.right = deleteNode(n.right, n.key);
+        }
+        return n;
+    }
+    // goes down a tree on the left side looking for the smallest item
+    public String minValue(node n) {
+        String min = n.key;
+        while (n.left != null) {
+            min = n.left.key;
+            n = n.left;
+        }
+        return min;
     }
 
 }
