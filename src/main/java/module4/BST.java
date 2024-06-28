@@ -7,9 +7,15 @@ public class BST {
      */
     public static void main(String[] args) {
         binTree<Integer> addressBook = new binTree<>();
-        addressBook.add("Joe", 5556666);
-        addressBook.add("Kim", 7778888);
-        addressBook.add("Dan", 9991111);
+        addressBook.add("Joe", 55564666);
+        addressBook.add("Kim", 77784888);
+        addressBook.add("Dan", 99914111);
+        addressBook.add("Kim", 777832888);
+        addressBook.add("Deafewan", 999123111);
+        addressBook.add("Kawefawfim", 777882388);
+        addressBook.add("Dwean", 999112311);
+        addressBook.add("Kwefim", 123);
+        addressBook.add("Dweafan", 999231111);
         addressBook.display();
 
         try
@@ -21,12 +27,17 @@ public class BST {
             System.out.println(e.getMessage());
         }
 
+        // could be tested by insert order to create spindly tree
+        System.out.println("Tree height = " + addressBook.height());
+
         addressBook.remove("Dan");
         System.out.println("Tree contains:");
         addressBook.display();
         addressBook.remove("Kim");
         System.out.println("Tree contains:");
         addressBook.display();
+
+        System.out.println("Tree height = " + addressBook.height());
     }
 
 }
@@ -147,7 +158,7 @@ class binTree<Item>
             // no child
             if (n.left == null) {
                 return n.right;
-            } else if (key.compareTo(n.key) > 0) {
+            } else if (n.right == null) {
                 return n.left;
             }
             // node with two children: get the inorder successor (smallest in right subtree)
@@ -165,6 +176,27 @@ class binTree<Item>
             n = n.left;
         }
         return min;
+    }
+
+    public int height() {
+        return findHeight(root);
+    }
+    private int findHeight(node n) {
+        if (root == null) {
+            return 0;
+        } else {
+            int leftHeight = 0, rightHeight = 0;
+            if (n.left != null) {
+                leftHeight = findHeight(n.left);
+            }
+
+            if (n.right != null) {
+                rightHeight = findHeight(n.right);
+            }
+
+            int max = Math.max(leftHeight, rightHeight);
+            return max + 1;
+        }
     }
 
 }
