@@ -53,7 +53,7 @@ class binTree<Item>
         String key;
         Item val;
         node left, right;
-    };
+    }
     node root;
     public binTree()
     {
@@ -70,8 +70,7 @@ class binTree<Item>
 
     }
 
-    public void add(String key, Item value)
-    {
+    public void add(String key, Item value) {
         root = treeEnter(root, key, value);
     }
 
@@ -80,7 +79,7 @@ class binTree<Item>
     {
 
         if (t==null) return null; //doesn't exist
-        if (key.compareTo( t.key) < 0)        //found match
+        if (key.compareTo( t.key) < 0)
         {
             System.out.println("Searching left");
             return treeSearch(t.left, key); //search left
