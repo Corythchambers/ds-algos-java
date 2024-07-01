@@ -5,7 +5,7 @@ public class RBTree {
     class Node {
         int data;
         Node left, right, parent;
-        boolean color;
+        boolean color; // true = black false = red
 
         public Node(int data) {
             this.data = data;
@@ -45,7 +45,7 @@ public class RBTree {
             }
         }
         Node newNode = new Node(key);
-        newNode.color = RED; // ????
+        newNode.color = false; // ????
         if (parent == null) {
             root = newNode;
         } else if (key < parent.data) {
@@ -63,12 +63,12 @@ public class RBTree {
 
         // Case 1 parent is null
         if (parent == null) {
-            node.color = BLACK;
+            node.color = true;
             return;
         }
 
         // parent is black --> do nothing
-        if (parent.color == BLACK) {
+        if (parent.color == true) {
             return;
         }
 
@@ -78,7 +78,7 @@ public class RBTree {
         // Not having a grandparent means that parent is the root. if we enforce black roots
         // grandparent will never be null and hte following if then block can be removed
         if (grandparent == null) {
-            parent.color = BLACK;
+            parent.color = true;
             return;
         }
 
@@ -86,10 +86,10 @@ public class RBTree {
         Node uncle = getUncle(parent);
 
         // Case 3: Uncle is red -> recolor parent, grandparent and uncle
-        if (uncle != null && uncle.color == RED) {
-            parent.color = BLACK;
-            grandparent.color = RED;
-            uncle.color = BLACK;
+        if (uncle != null && uncle.color == false) {
+            parent.color = true;
+            grandparent.color = false;
+            uncle.color = true;
             //call recursively for grandparent which is now red
             fixRedBlackPropertiesAfterInsert(grandparent);
         }
@@ -98,7 +98,7 @@ public class RBTree {
         else if ( parent == grandparent.left) {
             // Case 4a: Uncle is black and node is left->right "inner child" of its grandparent
             if (node == parent.right) {
-                rotateLeft(parent);
+//                rotateLeft(parent);
 
                 // Let parent point to the new root node of the rotated sub-tree
                 // it will be recolored in the next step which were going to fall through to
@@ -106,17 +106,17 @@ public class RBTree {
             }
 
             //Case 5a: Uncle is black and node is left->left "outer child" of its grandparent
-            rotateRight(grandparent);
+//            rotateRight(grandparent);
 
             // Recolor original parent and grandparent
-            parent.color = BLACK;
-            grandparent.color = RED;
+            parent.color = true; // black
+            grandparent.color = false; // red
         }
 
         else {
             // case 4b: uncle is black and node is right->left "inner child" of its grandparent
             if (node == parent.left) {
-                rotateRight(parent);
+//                rotateRight(parent);
 
                 // let parent point to thenew root node of the rotated sub-tree
                 // it will be recolored in the next step
@@ -124,11 +124,11 @@ public class RBTree {
             }
 
             // case 5b uncle is black and node is right-> outer child of its grandparent
-            rotateLeft(grandparent);
+//            rotateLeft(grandparent);
 
             // Recolor original parent and grandparent
-            parent.color = BLACK;
-            grandparent.color = RED;
+            parent.color = true; // black
+            grandparent.color = false; // red
         }
     }
 
