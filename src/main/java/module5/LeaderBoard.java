@@ -4,7 +4,6 @@ public class LeaderBoard {
 
     public static void main(String[] args) {
 
-
         LeaderBoard leaderBoard = new LeaderBoard();
         leaderBoard.add(10.0);
         leaderBoard.add(9.0);
@@ -65,14 +64,14 @@ public class LeaderBoard {
         }
     }
 
-    private void swimDown(int k) {
-        int child = leftChild(k);
+    private void swimDown(int hole) {
+        int child = leftChild(hole);
         if (child <= currentSize) {
             if (collection[child + 1] > collection[child]) {
                 child++;
             }
-            if (collection[child] > collection[k]) {
-                swap(k, child);
+            if (collection[child] > collection[hole]) {
+                swap(hole, child);
             }
             swimDown(child);
         }
@@ -84,6 +83,7 @@ public class LeaderBoard {
         // if full return message
         if (currentSize == collection.length) {
             System.out.println("Array is full, resize");
+            return false;
         } else {
             collection[++currentSize] = item;
             swimUp(currentSize);
@@ -92,13 +92,9 @@ public class LeaderBoard {
     }
 
     public double remove() {
-        // make sure it's not empty
-        if (currentSize < 1) {
-            System.out.println("Array is empty");
-        } else {
-            swap(1, currentSize--);
-            swimDown(1);
-        }
-        return collection[1];
+        double maxItem = collection[1];
+        collection[1] = collection[currentSize--];
+        swimDown(1);
+        return maxItem;
     }
 }
