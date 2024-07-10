@@ -93,6 +93,7 @@ class graph {
         return labels[vertex];
     }
 
+    // breadth first
     public void breadth_first_list(graph g, int start) {
         boolean[] marked = new boolean[g.size()];
         Set<Integer> connections;
@@ -113,5 +114,26 @@ class graph {
                 }
             }
         } while (!vertex_queue.isEmpty());
+    }
+
+
+    // Depth first traversal
+
+    void depth_first_list(graph g, int start) {
+        boolean[] marked = new boolean[g.size()];
+        rec_dfs_list(start, g, marked);
+    }
+
+    public void rec_dfs_list(int v, graph g, boolean[] marked) {
+        Set<Integer> connections = g.neighbors(v);
+
+        marked[v] = true;
+        System.out.println(g.get_label(v)); // do work ?
+        // Travers all the neighbors lokoing for unmarked vertices
+        for (Integer x : connections) {
+            if (!marked[x]) {
+                rec_dfs_list(x, g, marked);
+            }
+        }
     }
 }
