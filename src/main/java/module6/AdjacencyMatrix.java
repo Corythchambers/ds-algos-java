@@ -1,6 +1,9 @@
 package module6;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 public class AdjacencyMatrix {
 
@@ -88,5 +91,27 @@ class graph {
 
     public Item get_label(int vertex) {
         return labels[vertex];
+    }
+
+    public void breadth_first_list(graph g, int start) {
+        boolean[] marked = new boolean[g.size()];
+        Set<Integer> connections;
+        Queue<Integer> vertex_queue = new LinkedList();
+
+        marked[start] = true;
+
+        vertex_queue.add(start);
+        do {
+            connections = g.neighbors(vertex_queue.peek());
+            vertex_queue.remove();
+            // Mark and process the unmarked neighbors
+            // and place them in teh queue
+            for (Integer x : connections) {
+                if (!marked[x]) {
+                    marked[x] = true;
+                    vertex_queue.add(x);
+                }
+            }
+        } while (!vertex_queue.isEmpty());
     }
 }
