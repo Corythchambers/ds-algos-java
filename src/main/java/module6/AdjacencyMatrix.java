@@ -1,9 +1,8 @@
 package module6;
 
-import javax.print.attribute.IntegerSyntax;
 import java.util.HashSet;
 
-public class GraphMaker {
+public class AdjacencyMatrix {
 
     public static void main(String[] args) {
         Item friend0 = new Item("Dan");
