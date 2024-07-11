@@ -118,7 +118,6 @@ class graph {
 
 
     // Depth first traversal
-
     void depth_first_list(graph g, int start) {
         boolean[] marked = new boolean[g.size()];
         rec_dfs_list(start, g, marked);
