@@ -1,11 +1,8 @@
 package module6;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
 
-public class AdjacencyMatrix {
+public class AdjacencyMatrix2 {
 
     public static void main(String[] args) {
         // graph #1 even
@@ -76,17 +73,8 @@ class graph {
         edges[target][source] = true;
     }
 
-    public void remove_edge(int source, int target) {
-        edges[source][target] = false;
-        edges[target][source] = false;
-    }
-
     public int size() {
         return many_vertices;
-    }
-
-    boolean is_edge(int source, int target) {
-        return edges[source][target];
     }
 
     public HashSet<Integer> neighbors(int vertex) {
@@ -111,50 +99,5 @@ class graph {
 
     public Item get_label(int vertex) {
         return labels[vertex];
-    }
-
-    // breadth first
-    public void breadth_first_list(graph g, int start) {
-        boolean[] marked = new boolean[g.size()];
-        Set<Integer> connections;
-        Queue<Integer> vertex_queue = new LinkedList();
-
-        marked[start] = true;
-
-        vertex_queue.add(start);
-        do {
-            connections = g.neighbors(vertex_queue.peek());
-            vertex_queue.remove();
-            // Mark and process the unmarked neighbors
-            // and place them in teh queue
-            for (Integer x : connections) {
-                if (!marked[x]) {
-                    marked[x] = true;
-                    vertex_queue.add(x);
-                }
-            }
-        } while (!vertex_queue.isEmpty());
-    }
-
-
-    // Depth first traversal
-    void depth_first_list(graph g, int start) {
-        boolean[] marked = new boolean[g.size()];
-        rec_dfs_list(start, g, marked);
-    }
-
-    public void rec_dfs_list(int v, graph g, boolean[] marked) {
-        Set<Integer> connections = g.neighbors(v);
-
-        marked[v] = true;
-        System.out.println(g.get_label(v)); // do work ?
-        // Travers all the neighbors looking for unmarked vertices
-        for (Integer x : connections) {
-            if (!marked[x]) {
-                rec_dfs_list(x, g, marked);
-            } else {
-                System.out.println("Cycle found");
-            }
-        }
     }
 }

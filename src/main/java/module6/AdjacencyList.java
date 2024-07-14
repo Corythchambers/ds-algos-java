@@ -3,6 +3,7 @@ package module6;
 import java.util.HashSet;
 
 public class AdjacencyList {
+
     // this is the edge
     class adjNode{
         int destination;
