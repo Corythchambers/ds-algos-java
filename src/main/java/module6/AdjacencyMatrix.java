@@ -41,9 +41,9 @@ public class AdjacencyMatrix {
         System.out.println(commNetwork.areAllEven());
     }
 }
-class Item {
+class Item2 {
     public String name;
-    public Item(String inputName) {
+    public Item2(String inputName) {
         this.name = inputName;
     }
     @Override
@@ -52,7 +52,7 @@ class Item {
     }
 }
 
-class graph {
+class graph2 {
     int MAXIMUM = 20;
     boolean[][] edges = new boolean[MAXIMUM][MAXIMUM];
     Item[] labels = new Item[MAXIMUM];
