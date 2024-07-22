@@ -34,11 +34,11 @@ public class SortingAlgos {
 
     public void mergeSort(Integer[] v) {
         if (v.length > 1) {
-            int n1 = v.length/2;
+            int n1 = v.length / 2;
             int n2 = v.length - n1;
             Integer[] left = new Integer[n1];
             Integer[] right = new Integer[n2];
-            System.arraycopy(v, 0 , left, 0, n1);
+            System.arraycopy(v, 0, left, 0, n1);
             System.arraycopy(v, n1, right, 0, n2);
             mergeSort(left);
             mergeSort(right);
@@ -58,10 +58,17 @@ public class SortingAlgos {
             }
         }
 
+        // Handle remaining elements in left array
+        while (p1 < left.length) {
+            arr[p++] = left[p1++];
+        }
+
+        // Handle remaining elements in right array
         while (p2 < right.length) {
             arr[p++] = right[p2++];
         }
     }
+
 
     public void quickSort(ArrayList<Integer> v, int start, int stop) {
         if (stop > start) {
